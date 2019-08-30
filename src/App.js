@@ -3,7 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import {addUser} from './actions';
 import { createStore } from 'redux';
-import rootReducer from './reducers'
+import rootReducer from './reducers';
+import {grid } from './grid';
+import {form} from './form';
 
 function App() {
   const store = createStore(rootReducer)
