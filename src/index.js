@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "unstated";
+import {Provider} from 'overstated';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import UNSTATED from 'unstated-debug';
+import 'semantic-ui-css/semantic.min.css';
 
 
-UNSTATED.logStateChanges =true;
+
 
 ReactDOM.render(
   <Provider>

@@ -9,8 +9,12 @@ import './App.css';
 // import {grid } from './grid';
 import AddUser from './AddUser';
 // import { Provider } from 'unstated';
+//import Users from "./view/Users";
+import { Container } from "semantic-ui-react";
+import { GlobalHooksProvider, createGlobalHook, useGlobalHook } from '@devhammed/use-global-hook'
 
 
+import userStateHook from './store';
 
 //const userContainer = new UserContainer();  
 function App() {
@@ -29,13 +33,13 @@ function App() {
   
  
   return (
-
-    <div>
-      <AddUser/>
-
-    </div>
-
-  );
+    <GlobalHooksProvider hooks={[ userStateHook ]}>
+  <h1>React Hooks Context Demo</h1>
+  {/* <Counter /> */}
+  {/* <Users /> */}
+  <AddUser/>
+  </GlobalHooksProvider>
+  )
 }
 
 export default App;

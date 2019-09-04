@@ -1,61 +1,69 @@
 import React from 'react';
-import { Provider, Subscribe, Container } from 'unstated';
-import UserContainer from './UserContainer';
+import { GlobalHooksProvider, createGlobalHook, useGlobalHook } from '@devhammed/use-global-hook'
+import {TextField} from 'material-ui/TextField';
 
+// class AddUser extends React.Component {
+//     inputRefName = React.createRef();
+//     inputRefCity = React.createRef();
+//     inputRefDateCreate = React.createRef();
 
-class AddUser extends React.Component {
-    inputRefName = React.createRef();
-    inputRefCity = React.createRef();
-    inputRefDateCreate = React.createRef();
-
-    handleClick = addTodo => {
-        if (this.inputRefName.current.value) {
-            addTodo({username :this.inputRefName.current.value, usercity:this.inputRefCity.current.value, userceated: this.inputRefDateCreate.current.value});
-            this.inputRefName.current.value = '';
-            this.inputRefCity.current.value = '';            
-            this.inputRefDateCreate.current.value = '';
-        }
-    };
-    render() {
-      return (
-        <div>
-          <input type="text" placeholder="User Name" ref={this.inputRefName} />
-          <input type="text" placeholder="Select City" ref={this.inputRefCity} />
-          <input type="text" placeholder="Pick CreateDate" ref={this.inputRefDateCreate} />
+//     handleClick = addTodo => {
+//         if (this.inputRefName.current.value) {
+//             addTodo({username :this.inputRefName.current.value, usercity:this.inputRefCity.current.value, userceated: this.inputRefDateCreate.current.value});
+//             this.inputRefName.current.value = '';
+//             this.inputRefCity.current.value = '';            
+//             this.inputRefDateCreate.current.value = '';
+//         }
+//     };
+//     render() {
+//       return (
+//         <div>
+//           <input type="text" placeholder="User Name" ref={this.inputRefName} />
+//           <input type="text" placeholder="Select City" ref={this.inputRefCity} />
+//           <input type="text" placeholder="Pick CreateDate" ref={this.inputRefDateCreate} />
   
-          <Subscribe to={[UserContainer]}>
-            {userContainer => (
-              <button onClick={() => this.handleClick(userContainer.A)}>
-                Add
-              </button>
-            )}
-          </Subscribe>
-        </div>
-      );
-    }
-  }
+//           <Subscribe to={[UserContainer]}>
+//             {userContainer => (
+//               <button onClick={() => this.handleClick(userContainer.A)}>
+//                 Add
+//               </button>
+//             )}
+//           </Subscribe>
+//         </div>
+//       );
+//     }
+//   }
 
+import userStateHook from './store';
+function AddUser() {
 
-// function Userform() {
-//   return (
+  const { users, loading, addUser, delUser} = useGlobalHook('userStore');
+  console.log(users)
+  const handleSubmit =() =>{
+    console.log(users)
+    addUser('John Doe','Clearwater');
 
-//       <Subscribe to={[UserContainer]}>
+}
+ 
+  
 
-//             <div>
-//                 {user => (
-//               <form method="POST" onSubmit={user.addUser}>
-//                 <input type="test" name="username" value={user.state.user.username} onChange={user.handleInputChange}></input>
-//                   <input type="test" name="usercity" value={user.state.user.usercity} onChange={user.handleInputChange}></input>
-//                   <button type="submit">Submit</button>
-//               </form>
-//                 )}
+  //
+ 
+  return (
 
+            <div>
 
-//             </div>
+              {/* <form method="POST" >
+                <input type="test" name="username"> </input>
+                  <input type="test" name="usercity"></input>
+                  
+              </form> */}
+              <button type="submit" onClick={handleSubmit}>Submit</button>
+            </div>
+            
 
-//       </Subscribe>
-//   )
-// }
+  )
+            }
 export default AddUser;
 
 
